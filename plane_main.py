@@ -42,8 +42,14 @@ class PlaneGame(object):
             self.hero.speed = 2
         elif key_pressed[pygame.K_LEFT] == 1:
             self.hero.speed = -2
+        # y轴的移动
+        elif key_pressed[pygame.K_UP] == 1:
+            self.hero.speed_y = -2
+        elif key_pressed[pygame.K_DOWN] == 1:
+            self.hero.speed_y = 2
         else:
             self.hero.speed = 0
+            self.hero.speed_y = 0
 
     def __check_collide(self):
         pygame.sprite.groupcollide(self.enemy_group, self.hero.bullets, True, True)

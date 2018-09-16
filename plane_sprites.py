@@ -19,7 +19,7 @@ class Background(GameSprite):
     """游戏背景精灵"""
     def __init__(self, is_alt=False):
         super().__init__("./images/background.png")
-        if is_alt == True:
+        if is_alt:
             self.rect.y = -self.rect.height
 
     def update(self):
@@ -50,16 +50,24 @@ class Hero(GameSprite):
     def __init__(self):
         super().__init__("./images/me1.png")
         self.rect.centerx = SCREEN_RECT.centerx
-        self.rect.bottom = SCREEN_RECT.bottom -120
+        self.rect.bottom = SCREEN_RECT.bottom - 120
         self.speed = 0
+        self.speed_y = 0
         self.bullets = pygame.sprite.Group()
 
     def update(self):
         self.rect.x += self.speed
+        self.rect.y += self.speed_y
+
+        # 限制飞机在屏幕内部移动
         if self.rect.x < 0:
             self.rect.x = 0
         elif self.rect.right > SCREEN_RECT.right:
             self.rect.x = SCREEN_RECT.right
+        if self.rect.y < 0:
+            self.rect.y = 0
+        elif self.rect.bottom > SCREEN_RECT.bottom:
+            self.rect.bottom = SCREEN_RECT.bottom
 
     def fire(self):
         for i in range(3):
@@ -81,5 +89,5 @@ class Bullet(GameSprite):
             self.kill()
 
     def __del__(self):
-        print("子弹被销毁了")
-
+        # print("子弹被销毁了")
+        pass
