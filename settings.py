@@ -1,0 +1,6 @@
+import pygame
+
+SCREEN_RECT = pygame.Rect(0, 0, 960, 700)
+FRAME_PRE_SEC = 60
+CREATE_ENEMY_EVENT = pygame.USEREVENT
+HERO_FIRE_EVENT = pygame.USEREVENT + 1
